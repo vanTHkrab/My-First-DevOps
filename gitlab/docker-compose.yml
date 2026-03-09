@@ -1,0 +1,30 @@
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab.local' 
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.local:8080' # Set hostname and port for GitLab access
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+        package['modify_kernel_parameters'] = false
+    ports:
+      - '8080:80'  
+      - '8443:443'   
+      - '2222:22'    
+    volumes:
+      - './config:/etc/gitlab'    
+      - './logs:/var/log/gitlab'  
+      - './data:/var/opt/gitlab'  
+    shm_size: '256m'
+    networks:
+          - gitlab_net
+          - shared_net
+
+networks:
+  gitlab_net:
+    driver: bridge
+  shared_net:         
+    external: true
+    name: shared_network
