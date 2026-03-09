@@ -477,9 +477,9 @@ This project was built as a hands-on DevOps learning exercise. Key takeaways:
 
 ---
 
-## 📄 License
+## License
 
-This project is for **educational purposes**. Feel free to fork, modify, and learn from it.
+This project is for **educational purposes**. Feel free to fork, modify, and learn from it. [MIT License](LICENSE).
 
 ---
 
